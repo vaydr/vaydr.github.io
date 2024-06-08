@@ -5,22 +5,23 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
   const [curves, setCurves] = useState([]);
 
   const config = {
-    numPellets: 500,
+    numPellets: 1500,
     pelletRadius: 2,
     pegRadius: 3,
-    pegRows: 5,
-    binCount: 10,
+    pegRows: 25,
+    binCount: 300,
     gravity: 0.1,
     maxDownwardSpeed: 5,
     animationSpeed: 0.5,
-    curveDrawingSpeed: 0.3,
+    curveDrawingSpeed: 0.005,
     curveStrokeWidth: 2,
     initialPelletVelocity: 0,
-    pegSpacing: 50,
-    pelletColor: '#FFFFFF', // White
-    pegColor: '#FFFFFF', // White
-    binColor: 'rgba(255, 255, 255, 0.7)', // White with transparency
-    userPelletColor: '#FFFFFF', // White
+    pegSpacing: 20,
+    pelletColor: '#FFFFFF',
+    pegColor: '#FFFFFF',
+    binColors: Array(300).fill('rgba(255, 255, 255, 0.7)'), // Default bin colors
+    userPelletColor: '#FF6347', // Highlighted user pellet color (Tomato)
+    userTrailColor: '#D8BFD8', // Light purple
     snarkyMessages: [
       "You're the best of the worst!",
       "Meh, try again!",
@@ -30,14 +31,14 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       "Almost there, but not quite.",
       "You hit rock bottom!",
       "Top tier! Or not..."
-    ].map(msg => msg.toUpperCase()) // Convert messages to uppercase for better visibility
+    ].map(msg => msg.toUpperCase())
   };
 
   const startAnimation = useCallback(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    const width = canvas.width;
-    const height = canvas.height;
+    const width = canvas.width = window.innerWidth * 0.8;
+    const height = canvas.height = window.innerHeight * 0.6;
     const pegSpacing = config.pegSpacing;
     const pegs = [];
     const pellets = [];
@@ -83,83 +84,6 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       ctx.closePath();
     };
 
-    const drawUserPelletTrail = () => {
-      ctx.beginPath();
-      ctx.moveTo(userPelletTrail[0].x, userPelletTrail[0].y);
-      for (let i = 1; i < userPelletTrail.length; i++) {
-        ctx.lineTo(userPelletTrail[i].x, userPelletTrail[i].y);
-      }
-      ctx.strokeStyle = config.userPelletColor;
-      ctx.lineWidth = 1;
-      ctx.stroke();
-      ctx.closePath();
-    };
-
-    const drawBins = () => {
-      const maxBinHeight = Math.max(...bins);
-      for (let i = 0; i < bins.length; i++) {
-        const binHeight = (bins[i] / maxBinHeight) * height * 0.3;
-        ctx.fillStyle = config.binColor;
-        ctx.fillRect(i * (width / bins.length), height - binHeight, width / bins.length, binHeight);
-      }
-    };
-
-    const drawBezierCurve = (points, t) => {
-      if (points.length < 2) return;
-
-      ctx.beginPath();
-      ctx.moveTo(points[0].x, points[0].y);
-
-      for (let i = 1; i < points.length - 2; i++) {
-        const cp1x = (points[i].x + points[i + 1].x) / 2;
-        const cp1y = (points[i].y + points[i + 1].y) / 2;
-        ctx.quadraticCurveTo(points[i].x, points[i].y, cp1x, cp1y);
-      }
-
-      ctx.quadraticCurveTo(
-        points[points.length - 2].x,
-        points[points.length - 2].y,
-        points[points.length - 1].x,
-        points[points.length - 1].y
-      );
-
-      ctx.strokeStyle = config.userPelletColor;
-      ctx.lineWidth = config.curveStrokeWidth;
-      ctx.stroke();
-      ctx.closePath();
-    };
-
-    const fadeInArea = (points) => {
-      if (points.length < 2) return;
-
-      ctx.beginPath();
-      ctx.moveTo(points[0].x, points[0].y);
-
-      for (let i = 1; i < points.length - 2; i++) {
-        const cp1x = (points[i].x + points[i + 1].x) / 2;
-        const cp1y = (points[i].y + points[i + 1].y) / 2;
-        ctx.quadraticCurveTo(points[i].x, points[i].y, cp1x, cp1y);
-      }
-
-      ctx.quadraticCurveTo(
-        points[points.length - 2].x,
-        points[points.length - 2].y,
-        points[points.length - 1].x,
-        points[points.length - 1].y
-      );
-
-      ctx.lineTo(points[points.length - 1].x, height);
-      ctx.lineTo(points[0].x, height);
-      ctx.closePath();
-
-      const gradient = ctx.createLinearGradient(0, 0, 0, height);
-      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.5)'); // White
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0.1)'); // White
-
-      ctx.fillStyle = gradient;
-      ctx.fill();
-    };
-
     const updatePellet = (pellet, index) => {
       if (!pellet.settled) {
         pellet.vy = Math.min(pellet.vy + config.gravity, config.maxDownwardSpeed);
@@ -182,11 +106,23 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
           pellet.settled = true;
           const binIndex = Math.floor(pellet.x / (width / config.binCount));
           bins[binIndex]++;
+          if (index === userPelletIndex) {
+            config.binColors = config.binColors.map((color, i) => i === binIndex ? 'rgba(255, 99, 71, 0.8)' : color); // Correctly highlight only the bin where the user pellet lands
+          }
         }
 
         if (index === userPelletIndex) {
           userPelletTrail.push({ x: pellet.x, y: pellet.y });
         }
+      }
+    };
+
+    const drawBins = () => {
+      const maxBinHeight = Math.max(...bins);
+      for (let i = 0; i < bins.length; i++) {
+        const binHeight = (bins[i] / maxBinHeight) * height * 0.3;
+        ctx.fillStyle = config.binColors[i];
+        ctx.fillRect(i * (width / bins.length), height - binHeight, width / bins.length, binHeight);
       }
     };
 
@@ -200,8 +136,6 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
         drawPellet(pellet.x, pellet.y, index === userPelletIndex);
       });
 
-      drawUserPelletTrail();
-
       if (pellets.some(pellet => !pellet.settled)) {
         requestAnimationFrame(animate);
       } else {
@@ -214,30 +148,55 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
           y: height - (count / Math.max(...bins)) * height * 0.3
         }));
 
-        animateBezierCurve(binTops);
-        setTimeout(() => fadeInArea(binTops), 500); // Delay to show the fade-in effect
+        animateCurve(binTops);
       }
     };
 
-    const animateBezierCurve = (points) => {
+    const animateCurve = (points) => {
       let t = 0;
       const drawStep = () => {
-        if (t > 1) return;
+        if (t > 1) {
+          return;
+        }
         ctx.clearRect(0, 0, width, height);
         drawBins();
         pegs.forEach(peg => drawPeg(peg.x, peg.y));
         pellets.forEach((pellet, index) => {
           drawPellet(pellet.x, pellet.y, index === userPelletIndex);
         });
-        drawUserPelletTrail();
 
-        const partialPoints = points.slice(0, Math.floor(points.length * t));
-        drawBezierCurve(partialPoints, t);
+        const currentPoint = Math.floor(points.length * t);
+        const partialPoints = points.slice(0, currentPoint);
+        drawSmoothCurve(partialPoints);
 
-        t += config.curveDrawingSpeed * 0.01;
+        t += config.curveDrawingSpeed;
         requestAnimationFrame(drawStep);
       };
       drawStep();
+    };
+
+    const drawSmoothCurve = (points) => {
+      if (points.length < 2) return;
+
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+
+      for (let i = 1; i < points.length - 1; i++) {
+        const midX = (points[i].x + points[i + 1].x) / 2;
+        const midY = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+      }
+
+      ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+      ctx.strokeStyle = config.userTrailColor;
+      ctx.lineWidth = config.curveStrokeWidth;
+      ctx.stroke();
+
+      ctx.lineTo(width, height);
+      ctx.lineTo(points[0].x, height);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(216, 191, 216, 0.5)';
+      ctx.fill();
     };
 
     createPegs();
@@ -249,7 +208,8 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     startAnimation();
   }, [startAnimation, resetAnimation]);
 
-  return <canvas ref={canvasRef} width="600" height="400" className="modern-canvas" style={{ background: 'transparent' }}></canvas>;
+  return <canvas ref={canvasRef} className="modern-canvas" style={{ width: '80vw', height: '60vh', background: 'transparent' }}></canvas>;
 };
 
 export default NormalDistribution;
+
