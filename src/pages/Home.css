@@ -1,46 +1,48 @@
 .home-container {
     text-align: center;
     margin-top: 50px;
-    font-family: 'Press Start 2P', cursive; /* Vaporwave font */
-    color: #FFFFFF; /* White text for visibility */
-    background: linear-gradient(135deg, #ff00ff, #00ffff); /* Neon magenta to neon cyan background */
+    font-family: 'Helvetica Neue', sans-serif; /* Apple-like bold, huge, clean font */
+    color: #FFFFFF; /* White text for contrast against black background */
+    background: transparent; /* Transparent background for a modern, space-y look */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
 }
 
 .vaporwave-button {
-    background-color: #00FFFF; /* Neon cyan background */
-    color: #000; /* Black text */
+    background-color: transparent; /* Transparent background */
+    color: #FFFFFF; /* White text */
     padding: 15px 32px;
     text-align: center;
-    font-size: 16px;
+    font-size: 24px; /* Larger text for better readability, increased size */
+    font-weight: bold; /* Bold text for emphasis */
     margin: 20px 2px;
     cursor: pointer;
-    border: none;
+    border: 2px solid #3b5998; /* Bold blue border */
     border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
     transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition */
 }
 
 .vaporwave-button:hover {
-    background-color: #00FFFF; /* Neon cyan background */
+    border-color: #8b9dc3; /* Light blue border on hover */
     transform: scale(1.05); /* Slightly enlarge on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* More intense shadow on hover */
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* More intense white shadow on hover */
 }
 
 .vaporwave-snarky-message {
     margin-top: 20px;
-    font-size: 18px;
-    color: #FFFFFF; /* White text for visibility */
-    text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #FF00FF; /* Glowing effect */
-    font-family: 'Press Start 2P', cursive; /* Vaporwave font */
+    font-size: 22px; /* Larger text for emphasis, increased size */
+    color: #FFFFFF; /* White text for readability */
+    text-shadow: none; /* Remove glowing effect */
+    font-family: 'Helvetica Neue', sans-serif; /* Apple-like bold, huge, clean font */
+    font-weight: bold; /* Bold text for emphasis */
 }
 
 canvas {
     display: block;
     margin: 0 auto;
-    border: 2px solid #00FFFF; /* Neon cyan border */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    border: 2px solid #3b5998; /* Blue border */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
     border-radius: 8px;
 }
