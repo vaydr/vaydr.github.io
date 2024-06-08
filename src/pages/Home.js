@@ -41,7 +41,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1 className="vaporwave-title">A Little Game</h1>
+      <h1 className="vaporwave-title">A Little Galton Board</h1>
       <button onClick={handleButtonClick} className="vaporwave-button">Feeling Lucky?</button>
       {showDistribution && <NormalDistribution setSnarkyMessage={setSnarkyMessage} resetAnimation={resetAnimation} />}
       {snarkyMessage && <p className="vaporwave-snarky-message">{snarkyMessage}</p>}
