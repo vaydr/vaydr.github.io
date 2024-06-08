@@ -3,21 +3,21 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
 
   const config = {
-    numPellets: 1000,
-    pelletRadius: 2,
+    numPellets: 250,
+    pelletRadius: 5,
     pegRadius: 3,
-    pegRows: 25,
-    binCount: 300,
+    pegRows: 10,
+    binCount: 150,
     gravity: 0.1,
     maxDownwardSpeed: 5,
     animationSpeed: 0.3,
     curveDrawingSpeed: 0.005,
     curveStrokeWidth: 2,
     initialPelletVelocity: 0,
-    pegSpacing: 20,
+    pegSpacing: 40,
     pelletColor: '#FFFFFF',
     pegColor: '#FFFFFF',
-    binColors: Array(300).fill('rgba(255, 255, 255, 0.7)'), // Default bin colors
+    binColors: Array(150).fill('rgba(255, 255, 255, 0.7)'), // Default bin colors
     userPelletColor: '#00FF00', // Highlighted user pellet color (Green)
     userTrailColor: '#D8BFD8', // Light purple
     snarkyMessages: [
@@ -28,7 +28,19 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       "Middle of the pack, like always.",
       "Almost there, but not quite.",
       "You hit rock bottom!",
-      "Top tier! Or not..."
+      "Top tier! Or not...",
+      "So close, yet so far!",
+      "Was that your best shot?",
+      "Oops, better luck next time!",
+      "That was... something.",
+      "Are you even trying?",
+      "Yikes, that was rough!",
+      "Keep practicing!",
+      "Better than nothing, right?",
+      "Don't quit your day job!",
+      "Is it too late to start over?",
+      "That's going to leave a mark!",
+      "Well, it could be worse..."
     ].map(msg => msg.toUpperCase())
   };
 
@@ -41,6 +53,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
   const [pelletsSettled, setPelletsSettled] = useState(0);
   const [userPelletRank, setUserPelletRank] = useState(0);
   const [pelletsRemaining, setPelletsRemaining] = useState(config.numPellets);
+  const [snarkyMessageIndex, setSnarkyMessageIndex] = useState(null);
 
   const startAnimation = useCallback(() => {
     const canvas = canvasRef.current;
@@ -169,6 +182,20 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       ctx.fillStyle = '#FFFFFF'; // Reset text color to white
       ctx.fillText(continuationText, 20 + baseTextWidth + greenTextWidth, 120);
     };
+
+    const flashMessage = () => {
+      if (snarkyMessageIndex === null) {
+        const now = new Date();
+        const seed = now.getTime();
+        const randomIndex = Math.floor((seed % config.snarkyMessages.length));
+        setSnarkyMessageIndex(randomIndex);
+      }
+      const message = config.snarkyMessages[Math.floor(Math.random() * config.snarkyMessages.length)];
+      ctx.font = 'bold 48px Arial';
+      ctx.fillStyle = 'rgba(255, 0, 0)';
+      ctx.fillText(message, 20, 180);
+    };
+
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
@@ -193,6 +220,22 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
         }));
 
         animateCurve(binTops);
+        setTimeout(() => {
+          const flashInterval = setInterval(() => {
+            ctx.clearRect(0, 0, width, height);
+            drawBins();
+            pegs.forEach(peg => drawPeg(peg.x, peg.y));
+            pellets.forEach((pellet, index) => {
+              drawPellet(pellet.x, pellet.y, index === userPelletIndex);
+            });
+            drawStats();
+            flashMessage();
+          }, 500); // Flash message every 500ms
+
+          setTimeout(() => {
+            clearInterval(flashInterval);
+          }, 500); // Stop flashing after 3 seconds
+        }, 500); // Flash message after a delay
       }
     };
 
@@ -257,4 +300,5 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
 };
 
 export default NormalDistribution;
+
 
