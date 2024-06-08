@@ -6,7 +6,7 @@
     background: transparent; /* Transparent background for a modern, space-y look */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
+    /* box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
     overflow: hidden; /* Prevents any child elements from overflowing and hides scrollbars */
 }
 
@@ -21,7 +21,7 @@
     cursor: pointer;
     border: 2px solid #3b5998; /* Bold blue border */
     border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle white shadow for depth */
     transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition */
 }
 
@@ -44,7 +44,7 @@ canvas {
     display: block;
     margin: 0 auto;
     border: 2px solid #3b5998; /* Blue border */
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
+    box-shadow: 0 4px 8px rgba(134, 134, 134, 0.1); /* Subtle white shadow for depth */
     border-radius: 8px;
     max-width: 100%; /* Ensures canvas does not overflow its container */
     height: auto; /* Maintains aspect ratio while adjusting to width */

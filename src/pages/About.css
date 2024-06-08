@@ -1,27 +1,32 @@
 .AboutContainer {
-  text-align: center;
+  text-align: left;
   padding: 20px;
   font-family: 'Helvetica Neue', sans-serif;
+  color: #FFFFFF;
+  background-color: transparent; /* Changed from #000000 to transparent */
 }
 
 .Title {
   font-size: 2.5rem;
-  color: #333;
+  color: #FFFFFF;
+  font-weight: bold;
 }
 
 .Subtitle {
   font-size: 1.5rem;
-  color: #666;
+  color: #FFFFFF;
+  font-weight: bold;
 }
 
 .Paragraph {
   font-size: 1rem;
-  color: #444;
+  color: #FFFFFF;
   margin-top: 10px;
+  font-weight: bold;
 }
 
 .Highlight {
-  color: #0056b3;
+  color: #FFFFFF;
   font-weight: bold;
 }
 
@@ -31,11 +36,12 @@
 
 .SocialIcon {
   margin: 0 10px;
-  color: #333;
+  color: #FFFFFF;
   font-size: 24px;
   transition: color 0.3s;
+  font-weight: bold;
 }
 
 .SocialIcon:hover {
-  color: #0056b3;
+  color: #FFFFFF;
 }
