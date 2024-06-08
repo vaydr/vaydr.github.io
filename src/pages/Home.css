@@ -7,6 +7,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
+    overflow: hidden; /* Prevents any child elements from overflowing and hides scrollbars */
 }
 
 .vaporwave-button {
@@ -45,4 +46,7 @@ canvas {
     border: 2px solid #3b5998; /* Blue border */
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
     border-radius: 8px;
+    max-width: 100%; /* Ensures canvas does not overflow its container */
+    height: auto; /* Maintains aspect ratio while adjusting to width */
+    overflow: hidden; /* Hides any scrollbars that may appear */
 }

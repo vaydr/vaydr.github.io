@@ -1,16 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
-  const canvasRef = useRef(null);
-  const pelletsSettledRef = useRef(0);
-  const pelletsRemainingRef = useRef(1500);
-  const userPelletRankRef = useRef(0);
-  const userPelletPercentileRef = useRef(0);
-
-  const [pelletsSettled, setPelletsSettled] = useState(0);
-  const [userPelletRank, setUserPelletRank] = useState(0);
-  const [pelletsRemaining, setPelletsRemaining] = useState(1500);
-  const [userPelletPercentile, setUserPelletPercentile] = useState(0);
 
   const config = {
     numPellets: 1000,
@@ -28,7 +18,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     pelletColor: '#FFFFFF',
     pegColor: '#FFFFFF',
     binColors: Array(300).fill('rgba(255, 255, 255, 0.7)'), // Default bin colors
-    userPelletColor: '#FF6347', // Highlighted user pellet color (Tomato)
+    userPelletColor: '#00FF00', // Highlighted user pellet color (Green)
     userTrailColor: '#D8BFD8', // Light purple
     snarkyMessages: [
       "You're the best of the worst!",
@@ -42,8 +32,15 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     ].map(msg => msg.toUpperCase())
   };
 
-  // Update binColors to be dynamic based on binCount
-  config.binColors = Array(config.binCount).fill('rgba(255, 255, 255, 0.7)');
+  const canvasRef = useRef(null);
+  const pelletsSettledRef = useRef(0);
+  const pelletsRemainingRef = useRef(config.numPellets);
+  const userPelletRankRef = useRef(0);
+  const userBinIndexRef = useRef(null); // Reference to store the bin index of the user pellet
+
+  const [pelletsSettled, setPelletsSettled] = useState(0);
+  const [userPelletRank, setUserPelletRank] = useState(0);
+  const [pelletsRemaining, setPelletsRemaining] = useState(config.numPellets);
 
   const startAnimation = useCallback(() => {
     const canvas = canvasRef.current;
@@ -54,7 +51,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     const pegs = [];
     const pellets = [];
     const bins = new Array(config.binCount).fill(0);
-    let userPelletIndex = Math.floor(Math.random() * config.numPellets);
+    let userPelletIndex = config.numPellets - 1; // User pellet is the last one
     const userPelletTrail = [];
     let settledPellets = 0;
 
@@ -102,33 +99,41 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
         pellet.x += pellet.vx * config.animationSpeed;
         pellet.y += pellet.vy * config.animationSpeed;
 
+        // Collision detection with pegs
         for (let peg of pegs) {
           const dx = pellet.x - peg.x;
           const dy = pellet.y - peg.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < config.pegRadius + config.pelletRadius) {
+          const collisionThreshold = config.pegRadius + config.pelletRadius;
+          if (distance < collisionThreshold) {
+            // Bounce pellet on collision
             pellet.vx = (Math.random() - 0.5) * 2;
             pellet.vy = -pellet.vy * 0.5;
-            pellet.y = peg.y + Math.sign(dy) * (config.pegRadius + config.pelletRadius);
+            pellet.y = peg.y + Math.sign(dy) * collisionThreshold;
           }
         }
 
-        if (pellet.y >= height - config.pelletRadius) {
-          pellet.y = height - config.pelletRadius;
+        // Check if pellet has settled at the bottom
+        const bottomThreshold = height - config.pelletRadius;
+        if (pellet.y >= bottomThreshold) {
+          pellet.y = bottomThreshold;
           pellet.settled = true;
           settledPellets++;
           const binIndex = Math.floor(pellet.x / (width / config.binCount));
           bins[binIndex]++;
           
-          // Update refs
+          // Update reference counts
           pelletsSettledRef.current = settledPellets;
           pelletsRemainingRef.current = config.numPellets - settledPellets;
           
+          // Special handling for user pellet
           if (index === userPelletIndex) {
             userPelletRankRef.current = settledPellets;
-            userPelletPercentileRef.current = ((binIndex / config.binCount) * 100).toFixed(2);
-            config.binColors = Array(config.binCount).fill('rgba(255, 255, 255, 0.7)'); // Reset all bins to default color
-            config.binColors[binIndex] = 'rgba(255, 99, 71, 0.8)'; // Highlight only the bin where the user pellet lands
+            userBinIndexRef.current = binIndex;
+            // Reset all bin colors to default
+            config.binColors.fill('rgba(255, 255, 255, 0.7)');
+            // Highlight user's bin in green
+            config.binColors[binIndex] = 'rgba(0, 255, 0, 0.8)';
           }
         }
 
@@ -148,14 +153,22 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     };
 
     const drawStats = () => {
-      ctx.font = '24px Arial';
+      ctx.font = 'bold 24px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
       ctx.fillStyle = '#FFFFFF';
       ctx.fillText(`Pellets Settled: ${pelletsSettledRef.current}`, 20, 30);
       ctx.fillText(`Your Pellet Rank (Speed): ${userPelletRankRef.current}`, 20, 60);
       ctx.fillText(`Pellets Remaining: ${pelletsRemainingRef.current}`, 20, 90);
-      ctx.fillText(`Your Pellet Percentile (Curve): ${userPelletPercentileRef.current}%`, 20, 120);
+      const baseText = "Your pellet, dropped first, is in ";
+      const greenText = "GREEN";
+      const continuationText = ". See where it lands!";
+      const baseTextWidth = ctx.measureText(baseText).width;
+      const greenTextWidth = ctx.measureText(greenText).width;
+      ctx.fillText(baseText, 20, 120);
+      ctx.fillStyle = '#00FF00'; // Set text color to green for the word "GREEN"
+      ctx.fillText(greenText, 20 + baseTextWidth, 120);
+      ctx.fillStyle = '#FFFFFF'; // Reset text color to white
+      ctx.fillText(continuationText, 20 + baseTextWidth + greenTextWidth, 120);
     };
-
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
@@ -244,3 +257,4 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
 };
 
 export default NormalDistribution;
+
