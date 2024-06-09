@@ -220,10 +220,14 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       ctx.beginPath();
       ctx.moveTo(points[0].x, points[0].y);
 
+      const drawSegment = (start, end) => {
+        const midX = (start.x + end.x) / 2;
+        const midY = (start.y + end.y) / 2;
+        ctx.quadraticCurveTo(start.x, start.y, midX, midY);
+      };
+
       for (let i = 1; i < points.length - 1; i++) {
-        const midX = (points[i].x + points[i + 1].x) / 2;
-        const midY = (points[i].y + points[i + 1].y) / 2;
-        ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
+        drawSegment(points[i], points[i + 1]);
       }
 
       ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
@@ -237,7 +241,6 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       ctx.fillStyle = 'rgba(216, 191, 216, 0.5)';
       ctx.fill();
     };
-
     createPegs();
     createPellets();
     animate();
