@@ -7,23 +7,23 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          vayd
+          vayd's world
         </Link>
         <ul className="nav-menu">
           <li className="nav-item">
-            <Link to="/" className="nav-links">Home</Link>
+            <Link to="/" className="nav-links">home</Link>
           </li>
           <li className="nav-item">
-            <Link to="/about" className="nav-links">About</Link>
+            <Link to="/about" className="nav-links">about</Link>
           </li>
           <li className="nav-item">
-            <Link to="/cv" className="nav-links">CV</Link>
+            <Link to="/cv" className="nav-links">cv</Link>
           </li>
           <li className="nav-item">
-            <Link to="/projects" className="nav-links">Projects</Link>
+            <Link to="/projects" className="nav-links">projects</Link>
           </li>
           <li className="nav-item">
-            <Link to="/contact" className="nav-links">Contact</Link>
+            <Link to="/contact" className="nav-links">contact</Link>
           </li>
         </ul>
       </div>

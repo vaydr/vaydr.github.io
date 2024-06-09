@@ -1,12 +1,9 @@
 .home-container {
     text-align: center;
-    margin-top: 50px;
     font-family: 'Helvetica Neue', sans-serif; /* Apple-like bold, huge, clean font */
     color: #FFFFFF; /* White text for contrast against black background */
     background: transparent; /* Transparent background for a modern, space-y look */
     padding: 20px;
-    border-radius: 8px;
-    /* box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Subtle white shadow for depth */
     overflow: hidden; /* Prevents any child elements from overflowing and hides scrollbars */
 }
 

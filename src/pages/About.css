@@ -2,7 +2,7 @@
   text-align: left;
   padding: 20px;
   font-family: 'Helvetica Neue', sans-serif;
-  color: #6A0DAD; /* Dark purple for text */
+  color: #000000; /* Black for text */
   background-color: #FFFFFF; /* White background */
 }
 
@@ -14,13 +14,13 @@
 
 .Subtitle {
   font-size: 1.5rem;
-  color: #6A0DAD; /* Dark purple for subtitles */
+  color: #9B30FF; /* Lighter purple for subtitles */
   font-weight: bold;
 }
 
 .Paragraph {
   font-size: 1rem;
-  color: #6A0DAD; /* Dark purple for paragraph text */
+  color: #000000; /* Black for paragraph text */
   margin-top: 10px;
   font-weight: bold;
 }
@@ -36,7 +36,7 @@
 
 .SocialIcon {
   margin: 0 10px;
-  color: #6A0DAD; /* Dark purple for social icons */
+  color: #000000; /* Black for social icons */
   font-size: 24px;
   transition: color 0.3s;
   font-weight: bold;

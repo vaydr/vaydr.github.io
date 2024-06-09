@@ -4,17 +4,17 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
 
   const config = {
     numPellets: 250,
-    pelletRadius: 5,
-    pegRadius: 3,
+    pelletRadius: 2,
+    pegRadius: 6,
     pegRows: 10,
     binCount: 150,
-    gravity: 0.1,
+    gravity: 0.31,
     maxDownwardSpeed: 5,
-    animationSpeed: 0.3,
-    curveDrawingSpeed: 0.0007,
+    animationSpeed: 2,
+    curveDrawingSpeed: 0.007,
     curveStrokeWidth: 5,
     initialPelletVelocity: 0,
-    pegSpacing: 40,
+    pegSpacing: 20,
     pelletColor: '#FFFFFF',
     pegColor: '#FFFFFF',
     binColors: Array(150).fill('rgba(255, 255, 255, 0.7)'), // Default bin colors
@@ -156,16 +156,16 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       ctx.fillText(`Pellets Settled: ${pelletsSettledRef.current}`, 20, 30);
       ctx.fillText(`Your Pellet Rank (Speed): ${userPelletRankRef.current}`, 20, 60);
       ctx.fillText(`Pellets Remaining: ${pelletsRemainingRef.current}`, 20, 90);
-      const baseText = "Your pellet, dropped first, is in ";
-      const greenText = "GREEN";
-      const continuationText = ". See where it lands!";
+      const baseText = "Your pellet is in ";
+      const greenText = "GREEN!";
+      const continuationText = "See where it lands!";
       const baseTextWidth = ctx.measureText(baseText).width;
       const greenTextWidth = ctx.measureText(greenText).width;
       ctx.fillText(baseText, 20, 120);
       ctx.fillStyle = '#00FF00'; // Set text color to green for the word "GREEN"
       ctx.fillText(greenText, 20 + baseTextWidth, 120);
       ctx.fillStyle = '#FFFFFF'; // Reset text color to white
-      ctx.fillText(continuationText, 20 + baseTextWidth + greenTextWidth, 120);
+      ctx.fillText(continuationText, 20, 150);
     };
 
     const animate = () => {
@@ -277,7 +277,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
         </label>
         <label>
           Number of Pellets: {numPellets}
-          <input type="range" min="1" max="1000" step="1" value={numPellets} onChange={(e) => setNumPellets(parseInt(e.target.value))} />
+          <input type="range" min="1" max="2500" step="1" value={numPellets} onChange={(e) => setNumPellets(parseInt(e.target.value))} />
         </label>
         <label>
           Number of Peg Rows: {pegRows}
