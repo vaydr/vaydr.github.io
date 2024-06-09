@@ -11,8 +11,8 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     gravity: 0.1,
     maxDownwardSpeed: 5,
     animationSpeed: 0.3,
-    curveDrawingSpeed: 0.005,
-    curveStrokeWidth: 2,
+    curveDrawingSpeed: 0.0007,
+    curveStrokeWidth: 5,
     initialPelletVelocity: 0,
     pegSpacing: 40,
     pelletColor: '#FFFFFF',
@@ -20,28 +20,6 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     binColors: Array(150).fill('rgba(255, 255, 255, 0.7)'), // Default bin colors
     userPelletColor: '#00FF00', // Highlighted user pellet color (Green)
     userTrailColor: '#D8BFD8', // Light purple
-    snarkyMessages: [
-      "You're the best of the worst!",
-      "Meh, try again!",
-      "You could have been a star!",
-      "Not bad, but not great either.",
-      "Middle of the pack, like always.",
-      "Almost there, but not quite.",
-      "You hit rock bottom!",
-      "Top tier! Or not...",
-      "So close, yet so far!",
-      "Was that your best shot?",
-      "Oops, better luck next time!",
-      "That was... something.",
-      "Are you even trying?",
-      "Yikes, that was rough!",
-      "Keep practicing!",
-      "Better than nothing, right?",
-      "Don't quit your day job!",
-      "Is it too late to start over?",
-      "That's going to leave a mark!",
-      "Well, it could be worse..."
-    ].map(msg => msg.toUpperCase())
   };
 
   const canvasRef = useRef(null);
@@ -54,22 +32,29 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
   const [userPelletRank, setUserPelletRank] = useState(0);
   const [pelletsRemaining, setPelletsRemaining] = useState(config.numPellets);
   const [snarkyMessageIndex, setSnarkyMessageIndex] = useState(null);
+  const [gravity, setGravity] = useState(config.gravity);
+  const [animationSpeed, setAnimationSpeed] = useState(config.animationSpeed);
+  const [pegSpacing, setPegSpacing] = useState(config.pegSpacing);
+  const [numPellets, setNumPellets] = useState(config.numPellets);
+  const [pegRows, setPegRows] = useState(config.pegRows);
+  const [pelletRadius, setPelletRadius] = useState(config.pelletRadius);
+  const [pegRadius, setPegRadius] = useState(config.pegRadius);
 
   const startAnimation = useCallback(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const width = canvas.width = window.innerWidth * 0.8;
     const height = canvas.height = window.innerHeight * 0.6;
-    const pegSpacing = config.pegSpacing;
     const pegs = [];
     const pellets = [];
     const bins = new Array(config.binCount).fill(0);
-    let userPelletIndex = config.numPellets - 1; // User pellet is the last one
+    let userPelletIndex = numPellets - 1; // User pellet is the last one
     const userPelletTrail = [];
     let settledPellets = 0;
+    let animationFrameId = null;
 
     const createPegs = () => {
-      for (let row = 0; row < config.pegRows; row++) {
+      for (let row = 0; row < pegRows; row++) {
         for (let col = 0; col <= row; col++) {
           const x = width / 2 - row * pegSpacing / 2 + col * pegSpacing;
           const y = row * pegSpacing + 50;
@@ -79,7 +64,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     };
 
     const createPellets = () => {
-      for (let i = 0; i < config.numPellets; i++) {
+      for (let i = 0; i < numPellets; i++) {
         pellets.push({
           x: width / 2,
           y: 10,
@@ -92,7 +77,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
 
     const drawPeg = (x, y) => {
       ctx.beginPath();
-      ctx.arc(x, y, config.pegRadius, 0, Math.PI * 2);
+      ctx.arc(x, y, pegRadius, 0, Math.PI * 2);
       ctx.fillStyle = config.pegColor;
       ctx.fill();
       ctx.closePath();
@@ -100,7 +85,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
 
     const drawPellet = (x, y, isUserPellet) => {
       ctx.beginPath();
-      ctx.arc(x, y, config.pelletRadius, 0, Math.PI * 2);
+      ctx.arc(x, y, pelletRadius, 0, Math.PI * 2);
       ctx.fillStyle = isUserPellet ? config.userPelletColor : config.pelletColor;
       ctx.fill();
       ctx.closePath();
@@ -108,16 +93,16 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
 
     const updatePellet = (pellet, index) => {
       if (!pellet.settled) {
-        pellet.vy = Math.min(pellet.vy + config.gravity, config.maxDownwardSpeed);
-        pellet.x += pellet.vx * config.animationSpeed;
-        pellet.y += pellet.vy * config.animationSpeed;
+        pellet.vy = Math.min(pellet.vy + gravity, config.maxDownwardSpeed);
+        pellet.x += pellet.vx * animationSpeed;
+        pellet.y += pellet.vy * animationSpeed;
 
         // Collision detection with pegs
         for (let peg of pegs) {
           const dx = pellet.x - peg.x;
           const dy = pellet.y - peg.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          const collisionThreshold = config.pegRadius + config.pelletRadius;
+          const collisionThreshold = pegRadius + pelletRadius;
           if (distance < collisionThreshold) {
             // Bounce pellet on collision
             pellet.vx = (Math.random() - 0.5) * 2;
@@ -127,7 +112,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
         }
 
         // Check if pellet has settled at the bottom
-        const bottomThreshold = height - config.pelletRadius;
+        const bottomThreshold = height - pelletRadius;
         if (pellet.y >= bottomThreshold) {
           pellet.y = bottomThreshold;
           pellet.settled = true;
@@ -137,7 +122,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
           
           // Update reference counts
           pelletsSettledRef.current = settledPellets;
-          pelletsRemainingRef.current = config.numPellets - settledPellets;
+          pelletsRemainingRef.current = numPellets - settledPellets;
           
           // Special handling for user pellet
           if (index === userPelletIndex) {
@@ -183,19 +168,6 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       ctx.fillText(continuationText, 20 + baseTextWidth + greenTextWidth, 120);
     };
 
-    const flashMessage = () => {
-      if (snarkyMessageIndex === null) {
-        const now = new Date();
-        const seed = now.getTime();
-        const randomIndex = Math.floor((seed % config.snarkyMessages.length));
-        setSnarkyMessageIndex(randomIndex);
-      }
-      const message = config.snarkyMessages[Math.floor(Math.random() * config.snarkyMessages.length)];
-      ctx.font = 'bold 48px Arial';
-      ctx.fillStyle = 'rgba(255, 0, 0)';
-      ctx.fillText(message, 20, 180);
-    };
-
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
@@ -208,34 +180,13 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
       drawStats();
 
       if (pellets.some(pellet => !pellet.settled)) {
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
       } else {
-        const userPellet = pellets[userPelletIndex];
-        const message = config.snarkyMessages[Math.floor(userPellet.x / width * config.snarkyMessages.length)];
-        setSnarkyMessage(message);
-
         const binTops = bins.map((count, i) => ({
           x: i * (width / bins.length) + (width / bins.length) / 2,
           y: height - (count / Math.max(...bins)) * height * 0.3
         }));
-
         animateCurve(binTops);
-        setTimeout(() => {
-          const flashInterval = setInterval(() => {
-            ctx.clearRect(0, 0, width, height);
-            drawBins();
-            pegs.forEach(peg => drawPeg(peg.x, peg.y));
-            pellets.forEach((pellet, index) => {
-              drawPellet(pellet.x, pellet.y, index === userPelletIndex);
-            });
-            drawStats();
-            flashMessage();
-          }, 500); // Flash message every 500ms
-
-          setTimeout(() => {
-            clearInterval(flashInterval);
-          }, 500); // Stop flashing after 3 seconds
-        }, 500); // Flash message after a delay
       }
     };
 
@@ -258,7 +209,7 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
         drawSmoothCurve(partialPoints);
 
         t += config.curveDrawingSpeed;
-        requestAnimationFrame(drawStep);
+        animationFrameId = requestAnimationFrame(drawStep);
       };
       drawStep();
     };
@@ -290,15 +241,56 @@ const NormalDistribution = ({ setSnarkyMessage, resetAnimation }) => {
     createPegs();
     createPellets();
     animate();
-  }, [setSnarkyMessage]);
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [setSnarkyMessage, gravity, animationSpeed, pegSpacing, numPellets, pegRows, pelletRadius, pegRadius]);
 
   useEffect(() => {
-    startAnimation();
+    const cleanup = startAnimation();
+    return () => {
+      if (cleanup) cleanup();
+    };
   }, [startAnimation, resetAnimation]);
 
-  return <canvas ref={canvasRef} className="modern-canvas" style={{ width: '80vw', height: '60vh', background: 'transparent' }}></canvas>;
+  return (
+    <div>
+      <canvas ref={canvasRef} className="modern-canvas" style={{ width: '80vw', height: '60vh', background: 'transparent' }}></canvas>
+      <div className="controls">
+        <label>
+          Gravity: {gravity}
+          <input type="range" min="0.01" max="1" step="0.01" value={gravity} onChange={(e) => setGravity(parseFloat(e.target.value))} />
+        </label>
+        <label>
+          Animation Speed: {animationSpeed}
+          <input type="range" min="0.1" max="2" step="0.1" value={animationSpeed} onChange={(e) => setAnimationSpeed(parseFloat(e.target.value))} />
+        </label>
+        <label>
+          Peg Spacing: {pegSpacing}
+          <input type="range" min="20" max="100" step="1" value={pegSpacing} onChange={(e) => setPegSpacing(parseFloat(e.target.value))} />
+        </label>
+        <label>
+          Number of Pellets: {numPellets}
+          <input type="range" min="1" max="1000" step="1" value={numPellets} onChange={(e) => setNumPellets(parseInt(e.target.value))} />
+        </label>
+        <label>
+          Number of Peg Rows: {pegRows}
+          <input type="range" min="1" max="20" step="1" value={pegRows} onChange={(e) => setPegRows(parseInt(e.target.value))} />
+        </label>
+        <label>
+          Pellet Radius: {pelletRadius}
+          <input type="range" min="1" max="20" step="1" value={pelletRadius} onChange={(e) => setPelletRadius(parseInt(e.target.value))} />
+        </label>
+        <label>
+          Peg Radius: {pegRadius}
+          <input type="range" min="1" max="20" step="1" value={pegRadius} onChange={(e) => setPegRadius(parseInt(e.target.value))} />
+        </label>
+      </div>
+    </div>
+  );
 };
 
 export default NormalDistribution;
-
-
