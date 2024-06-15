@@ -53,9 +53,8 @@ canvas {
 
 .vanta-canvas {
     display: block;
-    margin: 0 auto;
+    margin: 1 auto;
     border: 2px solid rgba(51, 51, 51, 1); /* 333 border */
-    box-shadow: 0 4px 8px rgba(134, 134, 134, 0.1); /* Subtle white shadow for depth */
     border-radius: 8px;
     max-width: 100%; /* Ensures canvas does not overflow its container */
     height: auto; /* Maintains aspect ratio while adjusting to width */

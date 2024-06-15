@@ -13,12 +13,12 @@ const Home = () => {
   const [showText, setShowText] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
 
-  const explanationText = "the galton board, also known as a quincunx, is a device invented by sir Francis Galton to demonstrate the central limit theorem. it consists of a vertical board with interleaved rows of pegs. pellets are dropped from the top and bounce randomly left or right as they hit the pegs, eventually collecting into bins at the bottom, forming a bell curve distribution. also, hi! i'm vayd, a recent MIT grad, and this is my website! i occasionally update the widget to the right, so stay tuned (or don't, that's good too, live your life fellow human)! i also host my blog on this website, where i ramble about many things that i believe make me an interesting person."
+  const explanationText = "the galton board, also known as a quincunx, is a device invented by sir Francis Galton to demonstrate the central limit theorem. it consists of a vertical board with interleaved rows of pegs. pellets are dropped from the top and bounce randomly left or right as they hit the pegs, eventually collecting into bins at the bottom, forming a bell curve distribution.\n\nalso, hi! i'm vayd, a recent MIT grad, and this is my website! i occasionally update the widget to the right, so stay tuned (or don't, that's good too, live your life fellow human)! i also host my blog on this website, where i ramble about many things that i believe make me an interesting person."
 
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(GLOBE({
-        el: document.querySelector('.vanta-canvas'), // Target the vanta-canvas element
+        el: document.body, // Target the entire body element
         THREE: THREE,
         mouseControls: true,
         touchControls: true,
@@ -29,7 +29,7 @@ const Home = () => {
         scaleMobile: 1.00,
         color: 0xff00ff,
         color2: 0x00ffff,
-        backgroundColor: 0x333333, // Set background color to black
+        backgroundColor: 0x333333, // Set background color to match the body background color
         size: 1,
         spacing: 24.00
       }));
