@@ -1,28 +1,51 @@
 .navbar {
-    background-color: #222;
-    height: 80px;
+    background-color: #333;
+    height: 7.5vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between; /* Align items to the ends (left and right) */
     align-items: center;
     font-size: 1.2rem;
+    width: 100%; /* Make the navbar 100% the width of the screen */
+    overflow-x: auto; /* Allow horizontal scrolling */
   }
   
   .navbar-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Align items to the ends (left and right) */
     align-items: center;
     width: 100%;
-    max-width: 1vw;
     padding: 0 50px;
   }
   
   .navbar-logo {
-    color: #fff;
+    background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), #fff, rgba(255, 150, 255, 0.7), #fff, rgba(150, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
     cursor: pointer;
     text-decoration: none;
     font-size: 2rem;
     display: flex;
     align-items: center;
+    margin-right: 20px; /* Add some space between the logo and the menu */
+    animation: gradient-flow 5s linear infinite; /* Speed up the animation and make it continuous */
+    background-size: 200% 200%; /* Ensure the gradient covers the entire text */
+  }
+
+  .navbar-logo:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Make it glow on hover */
+  }
+
+  @keyframes gradient-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
   }
   
   .nav-menu {
@@ -30,10 +53,12 @@
     align-items: center;
     list-style: none;
     text-align: center;
+    margin-left: auto; /* Ensure the menu is aligned to the right */
   }
   
   .nav-item {
     height: 0.15vh;
+    margin: 0 20px; /* Add spacing between menu items */
   }
   
   .nav-links {
@@ -48,4 +73,3 @@
   .nav-links:hover {
     border-bottom: 3px solid #fff;
   }
-  

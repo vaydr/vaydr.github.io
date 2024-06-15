@@ -13,7 +13,7 @@ const Home = () => {
   const [showText, setShowText] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
 
-  const explanationText = "the galton board, also known as a quincunx, is a device invented by sir Francis Galton to demonstrate the central limit theorem. it consists of a vertical board with interleaved rows of pegs. pellets are dropped from the top and bounce randomly left or right as they hit the pegs, eventually collecting into bins at the bottom, forming a bell curve distribution.\n\nalso, hi! i'm vayd, a recent MIT grad, and this is my website! i occasionally update the widget to the right, so stay tuned (or don't, that's good too, live your life fellow human)! i also host my blog on this website, where i ramble about many things that i believe make me an interesting person."
+  const explanationText = "the galton board, also known as a quincunx, is a device invented by sir Francis Galton to demonstrate the central limit theorem. it consists of a vertical board with interleaved rows of pegs. pellets are dropped from the top and bounce randomly left or right as they hit the pegs, eventually collecting into bins at the bottom, forming a bell curve distribution. \n \n also, hi! i'm vayd, a recent MIT grad, and this is my website! i occasionally update the widget to the right, so stay tuned (or don't, that's good too, live your life fellow human)! i also host my blog (currently migrating it over) on this website, where i ramble about many things that i believe make me an interesting person."
 
   useEffect(() => {
     if (!vantaEffect) {
