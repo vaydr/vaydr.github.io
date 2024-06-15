@@ -18,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(GLOBE({
-        el: document.body, // Target the body element directly
+        el: document.querySelector('.vanta-canvas'), // Target the vanta-canvas element
         THREE: THREE,
         mouseControls: true,
         touchControls: true,
@@ -56,7 +56,7 @@ const Home = () => {
 
   return (
     <div className="home-container" style={{ display: 'flex', zIndex: -1 }}>
-      <div style={{ flex: 1 }}>
+      <div className="vanta-canvas" style={{ flex: 1 }}>
         <h1 className="vaporwave-title">vayd's world</h1>
         <p>yes, you're in the right place!</p>
         <p>if you click the button below, something cool will happen...</p>

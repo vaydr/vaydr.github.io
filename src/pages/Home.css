@@ -1,8 +1,12 @@
+body {
+    background-color: #333333; /* Set the entire webpage background to #333333 */
+}
+
 .home-container {
     text-align: center;
     font-family: 'Helvetica Neue', sans-serif; /* Apple-like bold, huge, clean font */
     color: #FFFFFF; /* White text for contrast against black background */
-    background: transparent; /* Transparent background for a modern, space-y look */
+    background: transparent;
     padding: 20px;
     overflow: hidden; /* Prevents any child elements from overflowing and hides scrollbars */
 }
@@ -16,13 +20,13 @@
     font-weight: bold;
     margin: 20px 2px;
     cursor: pointer;
-    border: 2px solid #3b5998;
+    border: 2px solid rgba(0, 255, 255, 0.7); /* Cyan border with transparency */
     border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 .vaporwave-button:hover {
-    border-color: #8b9dc3; /* Light blue border on hover */
+    border-color: rgba(255, 0, 255, 0.7); /* Magenta border with transparency on hover */
     transform: scale(1.05); /* Slightly enlarge on hover */
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* More intense white shadow on hover */
 }
@@ -39,7 +43,18 @@
 canvas {
     display: block;
     margin: 0 auto;
-    border: 2px solid #3b5998; /* Blue border */
+    border: 2px solid rgba(0, 255, 255, 0.7); /* Cyan border */
+    box-shadow: 0 4px 8px rgba(134, 134, 134, 0.1); /* Subtle white shadow for depth */
+    border-radius: 8px;
+    max-width: 100%; /* Ensures canvas does not overflow its container */
+    height: auto; /* Maintains aspect ratio while adjusting to width */
+    overflow: hidden; /* Hides any scrollbars that may appear */
+}
+
+.vanta-canvas {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid rgba(51, 51, 51, 1); /* 333 border */
     box-shadow: 0 4px 8px rgba(134, 134, 134, 0.1); /* Subtle white shadow for depth */
     border-radius: 8px;
     max-width: 100%; /* Ensures canvas does not overflow its container */
