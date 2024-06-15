@@ -30,12 +30,13 @@
     margin-right: 20px; /* Add some space between the logo and the menu */
     animation: gradient-flow 5s linear infinite; /* Speed up the animation and make it continuous */
     background-size: 200% 200%; /* Ensure the gradient covers the entire text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a bigger drop shadow to the text */
   }
 
   .navbar-logo:hover {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Make it glow on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
   }
-
   @keyframes gradient-flow {
     0% {
       background-position: 0% 50%;
@@ -57,7 +58,7 @@
   }
   
   .nav-item {
-    height: 0.15vh;
+    height: 7.5vh;
     margin: 0 20px; /* Add spacing between menu items */
   }
   
@@ -68,8 +69,16 @@
     height: 100%;
     display: flex;
     align-items: center;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
   }
   
   .nav-links:hover {
-    border-bottom: 3px solid #fff;
+    background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), #fff, rgba(255, 150, 255, 0.7), #fff, rgba(150, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Make it glow on hover, but less intense */
+    animation: gradient-flow 5s linear infinite; /* Apply the gradient animation */
+    background-size: 200% 200%; /* Ensure the gradient covers the entire text */
+    border-bottom: none; /* Remove the underline on hover */
   }
