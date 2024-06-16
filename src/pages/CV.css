@@ -36,4 +36,11 @@
 .paragraph {
   margin-bottom: 10px;
   line-height: 1.5;
+  font-size: 3rem;
+}
+.list-item {
+  font-size: 1rem;
+  color: #fff; /* White for list item text */
+  margin-top: 5px;
+  font-weight: normal;
 }
