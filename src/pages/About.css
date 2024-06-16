@@ -1,58 +1,62 @@
-.AboutContainer {
-  text-align: left;
+.about-container {
+  display: flex;
+  justify-content: space-around; /* Changed from space-between to space-around to bring the fact card in some */
   padding: 20px;
   font-family: 'Helvetica Neue', sans-serif;
   color: #fff; /* White for text */
   background-color: #333; /* Dark background */
 }
 
-.BigBoldText {
-  font-size: 2.5rem;
-  color: #fff; /* White for titles */
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow to the text */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top */
+  padding: 20px;
+  flex: 1;
 }
 
-.CardTitle {
-  font-size: 1.5rem;
-  color: #fff; /* White for subtitles */
+.title {
+  font-size: 4.5rem; /* Increased font size */
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a drop shadow to the text */
+  background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), rgba(173, 216, 230, 0.7), #fff, rgba(255, 150, 255, 0.7), rgba(173, 216, 230, 0.7), rgba(150, 255, 255, 0.7)); /* Added light blue to the gradient */
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.Paragraph {
+.description {
   font-size: 1rem;
   color: #fff; /* White for paragraph text */
   margin-top: 10px;
   font-weight: bold;
 }
 
-.Highlight {
-  background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), #fff, rgba(255, 150, 255, 0.7), #fff, rgba(150, 255, 255, 0.7));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.blog-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-links a {
+  font-size: 1rem;
+  color: #fff; /* White for links */
+  margin-top: 10px;
   font-weight: bold;
-  animation: gradient-flow 5s linear infinite; /* Apply the gradient animation */
-  background-size: 200% 200%; /* Ensure the gradient covers the entire text */
+  text-decoration: none;
 }
 
-.SocialLinks {
-  margin-top: 20px;
-}
-
-.SocialIcon {
-  margin: 0 10px;
-  color: #fff; /* White for social icons */
-  font-size: 24px;
-  transition: color 0.3s;
-  font-weight: bold;
-}
-
-.SocialIcon:hover {
+.blog-links a:hover {
   color: rgba(150, 255, 255, 0.7); /* Lighter color on hover */
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Make it glow on hover */
   transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.fact-card-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: calc(0.1vw + 20px); /* Bring the fact card inside by about 0.1vw */
+  flex: 0 0 300px; /* Fixed width for the fact card container */
 }
 
 @keyframes gradient-flow {

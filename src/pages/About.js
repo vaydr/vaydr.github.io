@@ -1,38 +1,62 @@
 import React from 'react';
 import './About.css';
+import FactCard from '../components/FactCard';
+import FlavorText from '../components/FlavorText';
+
+const sections = [
+  {
+    type: 'image',
+    title: 'Image',
+    content: null,
+  },
+  {
+    title: 'Personal Life',
+    content: [
+      { label: 'Birthplace:', value: <> <FlavorText text="JFK Hospital" link="https://example.com/jfk-hospital" /> in <FlavorText text="Edison, NJ" link="https://example.com/edison-nj" /> </> },
+      { label: 'Birthdate:', value: '5:19 PM EDT on October 22, 2002' },
+      { label: 'Raised:', value: <> <FlavorText text="Starkville, MS" link="https://example.com/starkville-ms" /> </> },
+      { label: 'Parents:', value: 'Professors at MSU' },
+    ],
+  },
+  {
+    title: 'Education',
+    content: [
+      { label: 'Education:', value: <> <FlavorText text="MIT" link="https://example.com/mit" /> grad in AI and Math </> },
+    ],
+  },
+  {
+    title: 'Occupation',
+    content: [
+      { label: 'Occupation:', value: <>Software Engineer at <FlavorText text="TikTok" link="https://example.com/tiktok" /></> },
+    ],
+  },
+  {
+    title: 'Fun Facts',
+    content: [
+      { label: 'Hobby:', value: <>Playing <FlavorText text="VALORANT" link="https://example.com/valorant" /></> },
+      { label: 'Favorite Food:', value: 'Sushi' },
+    ],
+  },
+];
 
 const About = () => {
   return (
-    <div className="AboutContainer">
-      <div className="FastFactsCard">
-        <h2 className="CardTitle">Fast Facts</h2>
-        <ul className="FastFactsList">
-          <li>Born in New Jersey</li>
-          <li>Raised in Mississippi</li>
-          <li>MIT grad in AI and Math</li>
-          <li>Software Engineer at TikTok</li>
-          <li>Parents are professors at MSU</li>
-        </ul>
+    <div className="about-container">
+      <div className="main-content">
+        <div className="title">Ramblings</div>
+        <div className="description">
+          <div className="paragraph">My mother tells me that I have a metallic, resonant voice that captures attention. It's something I share with my father.</div>
+          <div className="paragraph">Having a voice that stands out can be a double-edged sword. While it grabs attention, it also invites scrutiny. I've come to see that this attention is a form of engagement, even if it brings criticism. I've learned to embrace it as part of who I am.</div>
+          <div className="paragraph">When I speak with passion, I aim to share insights and emotions, not just fill silence. I believe that meaningful conversations can leave a lasting impact, and I strive to make my words count.</div>
+        </div>
+        <div className="blog-links">
+          <div className="blog-placeholder">Blog links will go here.</div>
+        </div>
       </div>
-      {/* 
-      <div className="AboutContent">
-        <h1 className="BigBoldText">About Me</h1>
-        <p className="Paragraph">
-          Hi, I'm <span className="Highlight">Vayd</span>. Born in New Jersey, raised in Mississippi. MIT grad in AI and Math. Now, a software engineer at TikTok's advertising department.
-        </p>
-        <p className="Paragraph">
-          My academic journey? Distributed algorithms, sublinear algorithms, and GANs for privacy-focused content. My parents, both professors at Mississippi State University, fueled my passion for the intersection of machine learning and biology.
-        </p>
-        <p className="Paragraph">
-          I'm all about leveraging technology to unlock the mysteries of biological systems. The future is bright with groundbreaking discoveries.
-        </p>
-        <p className="Paragraph">
-          Outside of work, you'll find me working out, playing VALORANT, or exploring Boston.
-        </p>
+      <div className="fact-card-container">
+        <FactCard sections={sections} />
       </div>
-      */}
     </div>
   );
 };
-
 export default About;
