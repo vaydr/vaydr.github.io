@@ -8,11 +8,11 @@ const CV = () => {
     <div className="cv-container">
       <div className="main-content">
         <div className="title">
-          <FlavorText text="Curriculum Vitae" type={1} />
+          <FlavorText text="Neo-Humanist Manifesto" type={1} />
         </div>
         <div className="description">
           <div className="paragraph">
-            Stay tuned! I'm currently migrating over my CV to this website.
+            This is where I'll put my manifesto. 
           </div>
         </div>
       </div>
