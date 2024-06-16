@@ -1,0 +1,45 @@
+.flavor-text {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease, text-shadow 0.3s ease, background-position 0.3s ease;
+    color: #fff; /* Set text color to white */
+    text-decoration: none;
+}
+
+.flavor-text:hover {
+    cursor: pointer; /* Turn the pointer to the hand */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect */
+    background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), #fff, rgba(255, 150, 255, 0.7), #fff, rgba(150, 255, 255, 0.7));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-flow 5s linear infinite; /* Animate gradient on hover */
+    background-size: 200% 200%;
+}
+
+.flavor-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0;
+}
+
+.flavor-text:hover::before {
+    opacity: 0;
+}
+
+@keyframes gradient-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
