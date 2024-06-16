@@ -17,10 +17,10 @@ const Fact = ({ label, value }) => (
   </div>
 );
 
-const FactCard = ({ sections }) => {
+const FactCard = ({ sections, label }) => {
   return (
     <div className="card">
-      <div className="header">Fast Facts</div>
+      <div className="header">{label}</div>
       <div className="content">
         {sections.map((section, index) => (
           section.type === 'image' ? (

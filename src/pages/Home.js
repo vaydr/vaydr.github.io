@@ -13,8 +13,13 @@ const Home = () => {
   const [showText, setShowText] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
 
-  const explanationText = "the galton board, also known as a quincunx, is a device invented by sir Francis Galton to demonstrate the central limit theorem. it consists of a vertical board with interleaved rows of pegs. pellets are dropped from the top and bounce randomly left or right as they hit the pegs, eventually collecting into bins at the bottom, forming a bell curve distribution. \n \n also, hi! i'm vayd, a recent MIT grad, and this is my website! i occasionally update the widget to the right, so stay tuned (or don't, that's good too, live your life fellow human)! i also host my blog (currently migrating it over) on this website, where i ramble about many things that i believe make me an interesting person."
-
+  const explanationText = 
+    "the galton board, also known as a quincunx, is a device invented by sir Francis Galton to demonstrate the central limit theorem. " +
+    "it consists of a vertical board with interleaved rows of pegs. pellets are dropped from the top and bounce randomly left or right " +
+    "as they hit the pegs, eventually collecting into bins at the bottom, forming a bell curve distribution. \n \n also, hi! i'm vayd, " +
+    "a recent MIT grad, and this is my website! i occasionally update the widget to the right, so stay tuned (or don't, that's good too, " +
+    "live your life fellow human)! i also host my blog (currently migrating it over) on this website, where i ramble about many things " +
+    "that i believe make me an interesting person.";
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(GLOBE({
@@ -56,8 +61,8 @@ const Home = () => {
 
   return (
     <div className="home-container" style={{ display: 'flex', zIndex: -1 }}>
-      <div className="vanta-canvas" style={{ flex: 1 }}>
-        <h1 className="vaporwave-title">vayd's world</h1>
+      <div className="left-container" style={{ flex: 1 }}>
+        <h1 className="vaporwave-title">currently under construction</h1>
         <p>yes, you're in the right place!</p>
         <p>if you click the button below, something cool will happen...</p>
         <button onClick={handleButtonClick} className="vaporwave-button">Feeling Lucky?</button>
@@ -65,7 +70,7 @@ const Home = () => {
           {showText && explanationText.split(' ').slice(0, textIndex).join(' ')}
         </p>
       </div>
-      <div style={{ flex: 1 }}>
+      <div className="right-container" style={{ flex: 1 }}>
         {showDistribution && <NormalDistribution setSnarkyMessage={setSnarkyMessage} resetAnimation={resetAnimation} />}
       </div>
     </div>

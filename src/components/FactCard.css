@@ -71,12 +71,15 @@
 }
 
 .label {
-    flex: 1;
+    align-self: flex-start; /* Align label to the top-left corner */
+    margin-right: 10px; /* Add space between label and value */
+    font-size: 0.875rem; /* Make the text smaller */
 }
 
 .value {
-    flex: 2;
-    text-align: right;
+    align-self: center; /* Align value to the center */
+    text-align: end;
+    font-size: 0.875rem; /* Make the text smaller */
 }
 
 .image-container {

@@ -16,7 +16,7 @@
 }
 
 .title {
-  font-size: 4.5rem; /* Increased font size */
+  font-size: 8rem; /* Increased font size */
   font-weight: bold;
   background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), rgba(173, 216, 230, 0.7), #fff, rgba(255, 150, 255, 0.7), rgba(173, 216, 230, 0.7), rgba(150, 255, 255, 0.7)); /* Added light blue to the gradient */
   -webkit-background-clip: text;

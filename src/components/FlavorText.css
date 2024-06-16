@@ -1,23 +1,23 @@
-.flavor-text {
+.flavor-text, .flavor-text-type-1, .flavor-text-type-2 {
     position: relative;
     display: inline-block;
     transition: color 0.3s ease, text-shadow 0.3s ease, background-position 0.3s ease;
     color: #fff; /* Set text color to white */
     text-decoration: none;
-}
-
-.flavor-text:hover {
-    cursor: pointer; /* Turn the pointer to the hand */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect */
-    background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), #fff, rgba(255, 150, 255, 0.7), #fff, rgba(150, 255, 255, 0.7));
+    background: linear-gradient(90deg, rgba(150, 255, 255, 0.9), rgba(255, 150, 255, 0.9), rgba(150, 255, 255, 0.9));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradient-flow 5s linear infinite; /* Animate gradient on hover */
+    animation: gradient-flow 5s linear infinite; /* Always animate gradient */
     background-size: 200% 200%;
 }
 
-.flavor-text::before {
+.flavor-text:hover, .flavor-text-type-1:hover, .flavor-text-type-2:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect */
+    animation-duration: 1s; /* Speed up animation on hover */
+}
+
+.flavor-text::before, .flavor-text-type-1::before, .flavor-text-type-2::before {
     content: '';
     position: absolute;
     top: 0;
@@ -28,8 +28,16 @@
     opacity: 0;
 }
 
-.flavor-text:hover::before {
+.flavor-text:hover::before, .flavor-text-type-1:hover::before, .flavor-text-type-2:hover::before {
     opacity: 0;
+}
+
+.flavor-text:hover {
+    cursor: pointer; /* Turn the pointer to the hand */
+}
+
+.flavor-text-type-1 {
+    user-select: none; /* Make text unselectable */
 }
 
 @keyframes gradient-flow {
@@ -43,3 +51,5 @@
         background-position: 200% 50%;
     }
 }
+
+
