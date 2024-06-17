@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; URL=./index.html" />
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // Preserve the path and redirect to the index.html with the correct path
+      var pathname = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
+      window.location.replace('/?' + pathname + search + hash);
+    </script>
   </head>
   <body>
+    Redirecting...
   </body>
 </html>
