@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <title>Redirecting...</title>
     <script type="text/javascript">
-      // Preserve the path and redirect to the index.html with the correct path
+      // Redirect to the correct location while preserving the path
       var pathname = window.location.pathname;
       var search = window.location.search;
       var hash = window.location.hash;
-      window.location.replace('/?' + pathname + search + hash);
+      var newPath = pathname + search + hash;
+      window.location.replace('/' + newPath);
     </script>
   </head>
   <body>
