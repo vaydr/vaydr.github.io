@@ -62,7 +62,7 @@ const Home = () => {
   return (
     <div className="home-container" style={{ display: 'flex', zIndex: -1 }}>
       <div className="left-container" style={{ flex: 1 }}>
-        <h1 className="vaporwave-title">currently under construction</h1>
+        <h1 className="vaporwave-title">🛠️🚧 currently under construction 🚧🛠️</h1>
         <p>yes, you're in the right place!</p>
         <p>if you click the button below, something cool will happen...</p>
         <button onClick={handleButtonClick} className="vaporwave-button">Feeling Lucky?</button>

@@ -13,6 +13,7 @@
   justify-content: flex-start; /* Align content to the top */
   padding: 20px;
   flex: 1;
+  text-align: left; /* Left justify text */
 }
 
 .title {
@@ -36,6 +37,23 @@
 .blog-links {
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* Align content to the top-left */
+  justify-content: flex-start; /* Align content to the top-left */
+  gap: 15px; /* Added space between blog links */
+}
+
+.blog-title {
+  font-size: 1.5rem;
+  color: #fff; /* White for blog titles */
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.blog-description {
+  font-size: 1rem;
+  color: #fff; /* White for blog descriptions */
+  margin-top: 5px;
+  font-weight: normal;
 }
 
 .blog-links a {
@@ -70,3 +88,10 @@
     background-position: 200% 50%;
   }
 }
+
+.paragraph {
+  margin-bottom: 10px;
+  line-height: 1.5;
+  font-size: 20px;
+}
+

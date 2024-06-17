@@ -14,7 +14,7 @@ const sections = [
     content: [
       { label: 'Birthplace:', value: <> <FlavorText text="JFK University Medical Center" link="https://www.hackensackmeridianhealth.org/en/locations/jfk-university-medical-center?city=none" /> in <FlavorText text="Edison, NJ" link="https://www.edisonnj.org/" /> </> },
       { label: 'Birthdate:', value: '5:19 PM EDT on October 22, 2002' },
-      { label: 'Raised:', value: <> <FlavorText text="Starkville, MS" link="https://www.cityofstarkville.org/" /> </> },
+      { label: 'Hometown:', value: <> <FlavorText text="Starkville, MS" link="https://www.cityofstarkville.org/" /> </> },
       { label: 'Family:', value: <> <FlavorText text="Mahalingam Ramkumar" link="https://web.cse.msstate.edu/~ramkumar/" /> (father, b. 1966), <FlavorText text="Bindu Nanduri" link="https://www.vetmed.msstate.edu/directory/bbn5" /> (mother, b. 1969), Professors at <FlavorText text="MSU" link="https://www.msstate.edu/" /> </> },
     ],
   },
@@ -29,8 +29,8 @@ const sections = [
   {
     title: 'Occupation',
     content: [
-      { label: 'Current:', value: <>Software Engineer at <FlavorText text="TikTok" link="https://www.tiktok.com/" /></> },
-      { label: 'Former:', value: <>Researcher at <FlavorText text="MIT CSAIL" link="https://www.csail.mit.edu/" /></> },
+      { label: 'Current:', value: <>Software Engineer at <FlavorText text="TikTok" link="https://www.tiktok.com/" /> </> },
+      { label: 'Former:', value: <>Researcher at <FlavorText text="MIT CSAIL" link="https://www.csail.mit.edu/" /> </> },
     ],
   },
   {
@@ -53,17 +53,34 @@ const About = () => {
     <div className="about-container">
       <div className="main-content">
         <div className="title">{title}</div>
-        <div className="description">
-          <div className="paragraph">My mother tells me that I have a metallic, resonant voice that captures attention. It's something I share with my father.</div>
-          <div className="paragraph">Having a voice that stands out can be a double-edged sword. While it grabs attention, it also invites scrutiny. I've come to see that this attention is a form of engagement, even if it brings criticism. I've learned to embrace it as part of who I am.</div>
-          <div className="paragraph">When I speak with passion, I aim to share insights and emotions, not just fill silence. I believe that meaningful conversations can leave a lasting impact, and I strive to make my words count.</div>
+        <div className="explanation">
+          There is a subtle, but crucial difference between <FlavorText text="knowing about" link="none" type={1} /> someone and <FlavorText text="knowing" link="none" type={1} /> someone. If you just want to <FlavorText text="know about" link="none" type={1} /> me, feel free to refer to the fact card! If, however, you're interested in getting to <FlavorText text="know" link="none" type={1} /> me, you can refer to the blog posts below! If you get through them and still want to stick around, thank you! I live for the smiles of people such as yourself, and the <FlavorText text="Contact" link="https://vaydr.github.io/contact" type={0} /> page was made just for you!
         </div>
         <div className="blog-links">
-          <div className="blog-placeholder">Blog links will go here.</div>
+          <div className="blog-title">
+            <FlavorText text="On Thinking" link="none" type={1} />
+          </div>
+          <div className="blog-description">some shower thoughts- particularly on how to apply graph algorithms to thinking (one might say i was thinking about thinking)</div>
+          <div className="blog-title">
+            <FlavorText text="Blog Title 2" link="none" type={1} />
+          </div>
+          <div className="blog-description">This is a brief description of what Blog Title 2 is about.</div>
+          <div className="blog-title">
+            <FlavorText text="Blog Title 3" link="none" type={1} />
+          </div>
+          <div className="blog-description">This is a brief description of what Blog Title 3 is about.</div>
+          <div className="blog-title">
+            <FlavorText text="Blog Title 4" link="none" type={1} />
+          </div>
+          <div className="blog-description">This is a brief description of what Blog Title 4 is about.</div>
+          <div className="blog-title">
+            <FlavorText text="Blog Title 5" link="none" type={1} />
+          </div>
+          <div className="blog-description">This is a brief description of what Blog Title 5 is about.</div>
         </div>
       </div>
       <div className="fact-card-container">
-        <FactCard sections={sections} label = {about_label}/>
+        <FactCard sections={sections} label={about_label} />
       </div>
     </div>
   );
