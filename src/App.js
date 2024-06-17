@@ -19,6 +19,8 @@ function App() {
           <Route path="/humans" element={<CV />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
+          {/* Add a wildcard route to handle all other paths */}
+          <Route path="*" element={<Home />} /> {/* Redirect all unmatched paths to Home */}
         </Routes>
       </div>
     </Router>
