@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -9,6 +9,13 @@ import Contact from './pages/Contact';
 import './App.css';
 
 function App() {
+  const { pathname, search, hash } = parseQueryParams(window.location.search);
+
+  React.useEffect(() => {
+    // Update the browser URL to match the decoded path, search, and hash
+    window.history.replaceState({}, '', pathname + search + hash);
+  }, [pathname, search, hash]);
+
   return (
     <Router>
       <div className="App">
@@ -28,3 +35,12 @@ function App() {
 }
 
 export default App;
+
+function parseQueryParams(queryString) {
+  const urlParams = new URLSearchParams(queryString);
+  return {
+    pathname: urlParams.get('pathname') || '/',
+    search: urlParams.get('search') || '',
+    hash: urlParams.get('hash') || ''
+  };
+}
