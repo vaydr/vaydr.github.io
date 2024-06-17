@@ -4,11 +4,9 @@
     <meta charset="UTF-8" />
     <title>Redirecting...</title>
     <script type="text/javascript">
-      // Redirect to the correct location while preserving the path
-      var pathname = window.location.pathname;
-      var search = window.location.search;
-      var hash = window.location.hash;
-      window.location.replace('/' + pathname + search + hash);
+      // Preserve the full path and redirect to the correct route
+      var path = window.location.pathname + window.location.search + window.location.hash;
+      window.location.replace('/index.html?' + path);
     </script>
   </head>
   <body>
