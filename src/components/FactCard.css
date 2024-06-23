@@ -1,40 +1,42 @@
+@import '../utilities.css';
+
 .card {
     display: flex;
     flex-direction: column;
-    background-color: #333; /* Dark background */
-    color: #fff; /* White text */
+    background-color: var(--background-color); /* Dark background */
+    color: var(--text-color); /* White text */
     padding: 20px;
     border-radius: 0; /* Sharp edges */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     margin: 20px 0;
-    border: 2px solid #fff; /* White border */
+    border: 2px solid var(--text-color); /* White border */
     transition: all 0.3s ease; /* Smooth transition for hover effects */
     width: 250px; /* Tall and skinny */
     overflow-y: visible; /* Allow content to overflow without scroll */
 }
 
 .card:hover {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect on hover */
-    border-image: linear-gradient(90deg, rgba(0, 255, 255, 1), rgba(255, 0, 255, 1), rgba(0, 255, 255, 1)) 1;
+    box-shadow: 0 0 10px var(--hover-text-shadow); /* Glow effect on hover */
+    border-image: linear-gradient(90deg, var(--strong-color-1), var(--strong-color-2), var(--strong-color-1)) 1;
     animation: border-gradient-flow 4s linear infinite; /* Apply the gradient animation */
     background-size: 200% 200%; /* Ensure the gradient covers the entire border */
 }
 
 @keyframes border-gradient-flow {
     0% {
-        border-image-source: linear-gradient(90deg, rgba(0, 255, 255, 1), rgba(255, 0, 255, 1), rgba(0, 255, 255, 1));
+        border-image-source: linear-gradient(90deg, var(--strong-color-1), var(--strong-color-2), var(--strong-color-1));
     }
     25% {
-        border-image-source: linear-gradient(90deg, rgba(255, 0, 255, 1), rgba(0, 255, 255, 1), rgba(255, 0, 255, 1));
+        border-image-source: linear-gradient(90deg, var(--strong-color-2), var(--strong-color-1), var(--strong-color-2));
     }
     50% {
-        border-image-source: linear-gradient(90deg, rgba(0, 255, 255, 1), rgba(255, 0, 255, 1), rgba(0, 255, 255, 1));
+        border-image-source: linear-gradient(90deg, var(--strong-color-1), var(--strong-color-2), var(--strong-color-1));
     }
     75% {
-        border-image-source: linear-gradient(90deg, rgba(255, 0, 255, 1), rgba(0, 255, 255, 1), rgba(255, 0, 255, 1));
+        border-image-source: linear-gradient(90deg, var(--strong-color-2), var(--strong-color-1), var(--strong-color-2));
     }
     100% {
-        border-image-source: linear-gradient(90deg, rgba(0, 255, 255, 1), rgba(255, 0, 255, 1), rgba(0, 255, 255, 1));
+        border-image-source: linear-gradient(90deg, var(--strong-color-1), var(--strong-color-2), var(--strong-color-1));
     }
 }
 

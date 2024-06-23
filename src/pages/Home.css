@@ -1,5 +1,7 @@
+@import '../utilities.css';
+
 body {
-    background-color: #333333; /* Set the entire webpage background to #333333 */
+    background-color: var(--background-color); /* Set the entire webpage background to #333333 */
 }
 
 .home-container {
@@ -9,37 +11,37 @@ body {
     align-items: center; /* Center the content vertically */
     z-index: -1;
     text-align: center;
-    font-family: 'Helvetica Neue', sans-serif; /* Apple-like bold, huge, clean font */
-    color: #ffffff; /* White text for contrast against black background */
+    font-family: var(--font-family); /* Apple-like bold, huge, clean font */
+    color: var(--text-color); /* White text for contrast against black background */
     background: transparent;
     padding: 20px;
     overflow: hidden; /* Prevents any child elements from overflowing and hides scrollbars */
 }
 
 .vaporwave-button {
-    background-color: transparent;
-    color: #ffffff;
-    padding: 15px 32px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    padding: var(--button-padding);
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 20px 2px;
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    margin: var(--button-margin);
     cursor: pointer;
-    border: 2px solid rgba(150, 255, 255, 0.7); /* Cyan border with transparency */
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid var(--button-border-color); /* Cyan border with transparency */
+    border-radius: var(--button-border-radius);
+    box-shadow: var(--button-box-shadow);
     transition: transform 0.2s, box-shadow 0.2s;
 }
 .vaporwave-button:hover {
-    border-color: rgba(255, 150, 255, 0.7); /* Magenta border with transparency on hover */
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    border-color: var(--button-hover-border-color); /* Magenta border with transparency on hover */
+    transform: var(--button-hover-transform); /* Slightly enlarge on hover */
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2); /* More intense white shadow on hover */
 }
 
 .vanta-canvas {
     display: block;
     margin: 1 auto;
-    border: 2px solid #333333; /* 333333 border */
+    border: 2px solid var(--background-color); /* 333333 border */
     border-radius: 8px;
     max-width: 100%; /* Ensures canvas does not overflow its container */
     height: auto; /* Maintains aspect ratio while adjusting to width */

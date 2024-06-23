@@ -1,10 +1,12 @@
+@import '../utilities.css';
+
 .flavor-text {
     position: relative;
     display: inline-block;
     transition: color 0.3s ease, text-shadow 0.3s ease, background-position 0.3s ease;
-    color: #fff; /* Set text color to white */
+    color: var(--flavor-text-0-color); /* Use variable for text color */
     text-decoration: none;
-    background: linear-gradient(90deg, rgba(150, 255, 255, 0.9), rgba(255, 150, 255, 0.9), rgba(150, 255, 255, 0.9));
+    background: var(--flavor-text-0-gradient); /* Use variable for gradient */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -13,7 +15,7 @@
 }
 
 .flavor-text:hover {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect */
+    text-shadow: 0 0 10px var(--hover-text-shadow); /* Use variable for glow effect */
     animation-duration: 1s; /* Speed up animation on hover */
     cursor: pointer; /* Turn the pointer to the hand */
 }
@@ -37,9 +39,9 @@
     position: relative;
     display: inline-block;
     transition: color 0.3s ease, text-shadow 0.3s ease, background-position 0.3s ease;
-    color: rgba(180, 180, 180, 1); /* Set text color to slightly less white */
+    color: var(--flavor-text-1-color); /* Use variable for text color */
     text-decoration: none;
-    background: linear-gradient(45deg, rgba(255, 180, 255, 0.9), rgba(180, 255, 255, 0.9), rgba(255, 180, 255, 0.9));
+    background: var(--flavor-text-1-gradient); /* Use variable for gradient */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -72,9 +74,9 @@
     position: relative;
     display: inline-block;
     transition: color 0.3s ease, text-shadow 0.3s ease, background-position 0.3s ease;
-    color: #fff; /* Set text color to white */
+    color: var(--flavor-text-2-color); /* Use variable for text color */
     text-decoration: none;
-    background: linear-gradient(90deg, rgba(150, 255, 255, 0.9), rgba(255, 150, 255, 0.9), rgba(150, 255, 255, 0.9));
+    background: var(--flavor-text-2-gradient); /* Use variable for gradient */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -83,7 +85,7 @@
 }
 
 .flavor-text-type-2:hover {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glow effect */
+    text-shadow: 0 0 10px var(--hover-text-shadow); /* Use variable for glow effect */
     animation-duration: 1s; /* Speed up animation on hover */
 }
 

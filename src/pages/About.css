@@ -1,10 +1,12 @@
+@import '../utilities.css';
+
 .about-container {
   display: flex;
   justify-content: space-around; /* Changed from space-between to space-around to bring the fact card in some */
   padding: 20px;
   font-family: 'Helvetica Neue', sans-serif;
-  color: #fff; /* White for text */
-  background-color: #333; /* Dark background */
+  color: var(--text-color); /* White for text */
+  background-color: var(--background-color); /* Dark background */
 }
 
 .main-content {
@@ -19,7 +21,7 @@
 .title {
   font-size: 8rem; /* Increased font size */
   font-weight: bold;
-  background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), rgba(173, 216, 230, 0.7), #fff, rgba(255, 150, 255, 0.7), rgba(173, 216, 230, 0.7), rgba(150, 255, 255, 0.7)); /* Added light blue to the gradient */
+  background: var(--gradient-colors); /* Added light blue to the gradient */
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -29,7 +31,7 @@
 
 .description {
   font-size: 1rem;
-  color: #fff; /* White for paragraph text */
+  color: var(--text-color); /* White for paragraph text */
   margin-top: 10px;
   font-weight: bold;
 }
@@ -44,29 +46,29 @@
 
 .blog-title {
   font-size: 1.5rem;
-  color: #fff; /* White for blog titles */
+  color: var(--text-color); /* White for blog titles */
   margin-top: 10px;
   font-weight: bold;
 }
 
 .blog-description {
   font-size: 1rem;
-  color: #fff; /* White for blog descriptions */
+  color: var(--text-color); /* White for blog descriptions */
   margin-top: 5px;
   font-weight: normal;
 }
 
 .blog-links a {
   font-size: 1rem;
-  color: #fff; /* White for links */
+  color: var(--text-color); /* White for links */
   margin-top: 10px;
   font-weight: bold;
   text-decoration: none;
 }
 
 .blog-links a:hover {
-  color: rgba(150, 255, 255, 0.7); /* Lighter color on hover */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Make it glow on hover */
+  color: var(--hover-color); /* Lighter color on hover */
+  text-shadow: 0 0 10px var(--hover-text-shadow); /* Make it glow on hover */
   transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
@@ -94,4 +96,3 @@
   line-height: 1.5;
   font-size: 20px;
 }
-

@@ -1,3 +1,36 @@
 .u-noSelect{
     user-select: false;
 }
+
+:root {
+  --text-color: #ffffff; /* White */
+  --background-color: #333333; /* Dark Gray */
+  --hover-color: rgba(150, 255, 255, 0.7); /* Light Cyan with Transparency */
+  --hover-text-shadow: rgba(255, 255, 255, 0.8); /* White with Transparency */
+  
+  /* Flavor Text Colors and Gradients */
+  --flavor-text-0-color: #ffffff; /* White */
+  --flavor-text-0-gradient: linear-gradient(90deg, rgba(150, 255, 255, 0.9), rgba(255, 150, 255, 0.9), rgba(150, 255, 255, 0.9));
+  
+  --flavor-text-1-color: rgba(180, 180, 180, 1); /* Slightly less white */
+  --flavor-text-1-gradient: linear-gradient(45deg, rgba(255, 180, 255, 0.9), rgba(180, 255, 255, 0.9), rgba(255, 180, 255, 0.9));
+  
+  --flavor-text-2-color: #ffffff; /* White */
+  --flavor-text-2-gradient: linear-gradient(90deg, rgba(150, 255, 255, 0.9), rgba(255, 150, 255, 0.9), rgba(150, 255, 255, 0.9));
+  
+  --flavor-text-3-color: #ffcc00; /* Gold */
+  --flavor-text-3-gradient: linear-gradient(90deg, rgba(255, 204, 0, 0.9), rgba(255, 255, 0, 0.9), rgba(255, 204, 0, 0.9));
+  
+  --flavor-text-4-color: #ff4500; /* OrangeRed */
+  --flavor-text-4-gradient: linear-gradient(90deg, rgba(255, 69, 0, 0.9), rgba(255, 140, 0, 0.9), rgba(255, 69, 0, 0.9));
+  
+  --gradient-color-1: rgba(150, 255, 255, 0.7); /* Light Cyan with Transparency */
+  --gradient-color-2: rgba(173, 216, 230, 0.7); /* Light Blue with Transparency */
+  --gradient-color-3: #ffffff; /* White */
+  --gradient-color-4: rgba(255, 150, 255, 0.7); /* Light Pink with Transparency */
+  --gradient-colors: linear-gradient(90deg, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3), var(--gradient-color-4), var(--gradient-color-2), var(--gradient-color-1));
+  
+  /* Strong Colors */
+  --strong-color-1: rgba(0, 255, 255, 1); /* Strong Cyan */
+  --strong-color-2: rgba(255, 0, 255, 1); /* Strong Magenta */
+}

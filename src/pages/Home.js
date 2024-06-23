@@ -32,8 +32,8 @@ const Home = () => {
         minWidth: window.innerWidth, // Set minimum width to full viewport width
         scale: 1.00,
         scaleMobile: 1.00,
-        color: 0xff00ff,
-        color2: 0x00ffff,
+        color: 0xff96ff, // Warm pink
+        color2: 0x96ffff, // Warm blue
         backgroundColor: 0x333333, // Set background color to match the body background color
         size: 1,
         spacing: 24.00

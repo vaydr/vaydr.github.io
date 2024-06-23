@@ -48,6 +48,26 @@ const sections = [
 
 const about_label = <FlavorText text="Vayd Ramkumar" link="none" type={1} />;
 const title = <FlavorText text="Ramblings" link="none" type={1} />;
+
+const BlogContainer = ({ children }) => {
+  return (
+    <div className="blog-links">
+      {children}
+    </div>
+  );
+};
+
+const BlogDescription = ({ title, description }) => {
+  return (
+    <>
+      <div className="blog-title">
+        <FlavorText text={title} link="none" type={1} />
+      </div>
+      <div className="blog-description">{description}</div>
+    </>
+  );
+};
+
 const About = () => {
   return (
     <div className="about-container">
@@ -56,28 +76,9 @@ const About = () => {
         <div className="explanation">
           There is a subtle, but crucial difference between <FlavorText text="knowing about" link="none" type={1} /> someone and <FlavorText text="knowing" link="none" type={1} /> someone. If you just want to <FlavorText text="know about" link="none" type={1} /> me, feel free to refer to the fact card! If, however, you're interested in getting to <FlavorText text="know" link="none" type={1} /> me, you can refer to the blog posts below! If you get through them and still want to stick around, thank you! I live for the smiles of people such as yourself, and the <FlavorText text="Contact" link="https://vaydr.github.io/#/contact" type={0} /> page was made just for you!
         </div>
-        <div className="blog-links">
-          <div className="blog-title">
-            <FlavorText text="On Thinking" link="none" type={1} />
-          </div>
-          <div className="blog-description">some shower thoughts- particularly on how to apply graph algorithms to thinking (one might say i was thinking about thinking)</div>
-          <div className="blog-title">
-            <FlavorText text="Blog Title 2" link="none" type={1} />
-          </div>
-          <div className="blog-description">This is a brief description of what Blog Title 2 is about.</div>
-          <div className="blog-title">
-            <FlavorText text="Blog Title 3" link="none" type={1} />
-          </div>
-          <div className="blog-description">This is a brief description of what Blog Title 3 is about.</div>
-          <div className="blog-title">
-            <FlavorText text="Blog Title 4" link="none" type={1} />
-          </div>
-          <div className="blog-description">This is a brief description of what Blog Title 4 is about.</div>
-          <div className="blog-title">
-            <FlavorText text="Blog Title 5" link="none" type={1} />
-          </div>
-          <div className="blog-description">This is a brief description of what Blog Title 5 is about.</div>
-        </div>
+        <BlogContainer>
+          <BlogDescription title="On Thinking" description="some shower thoughts- particularly on how to apply graph algorithms to thinking (one might say i was thinking about thinking)" />
+        </BlogContainer>
       </div>
       <div className="fact-card-container">
         <FactCard sections={sections} label={about_label} />

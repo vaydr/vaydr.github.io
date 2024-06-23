@@ -1,5 +1,7 @@
+@import '../utilities.css';
+
 .navbar {
-    background-color: #333;
+    background-color: var(--background-color);
     height: 7.5vh;
     display: flex;
     justify-content: space-between; /* Align items to the ends (left and right) */
@@ -7,18 +9,18 @@
     font-size: 1.2rem;
     width: 100%; /* Make the navbar 100% the width of the screen */
     overflow-x: auto; /* Allow horizontal scrolling */
-  }
-  
-  .navbar-container {
+}
+
+.navbar-container {
     display: flex;
     justify-content: space-between; /* Align items to the ends (left and right) */
     align-items: center;
     width: 100%;
     padding: 0 50px;
-  }
-  
-  .navbar-logo {
-    background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), #fff, rgba(255, 150, 255, 0.7), #fff, rgba(150, 255, 255, 0.7));
+}
+
+.navbar-logo {
+    background: var(--gradient-colors);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -31,49 +33,50 @@
     animation: gradient-flow 5s linear infinite; /* Speed up the animation and make it continuous */
     background-size: 200% 200%; /* Ensure the gradient covers the entire text */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a bigger drop shadow to the text */
-  }
+}
 
-  .navbar-logo:hover {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Make it glow on hover */
+.navbar-logo:hover {
+    text-shadow: 0 0 10px var(--hover-text-shadow); /* Make it glow on hover */
     transition: all 0.3s ease; /* Smooth transition for hover effects */
-  }
-  @keyframes gradient-flow {
+}
+
+@keyframes gradient-flow {
     0% {
-      background-position: 0% 50%;
+        background-position: 0% 50%;
     }
     50% {
-      background-position: 100% 50%;
+        background-position: 100% 50%;
     }
     100% {
-      background-position: 200% 50%;
+        background-position: 200% 50%;
     }
-  }
-  
-  .nav-menu {
+}
+
+.nav-menu {
     display: flex;
     align-items: center;
     list-style: none;
     text-align: center;
     margin-left: auto; /* Ensure the menu is aligned to the right */
-  }
-  
-  .nav-item {
+}
+
+.nav-item {
     height: 7.5vh;
     margin: 0 20px; /* Add spacing between menu items */
-  }
-  
-  .nav-links {
-    color: #fff;
+}
+
+.nav-links {
+    color: var(--text-color);
     text-decoration: none;
     padding: 0.5rem 1rem;
     height: 100%;
     display: flex;
     align-items: center;
     transition: all 0.3s ease; /* Smooth transition for hover effects */
-  }
-  
-  .nav-links:hover {
-    background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), #fff, rgba(255, 150, 255, 0.7), #fff, rgba(150, 255, 255, 0.7));
+}
+
+.nav-links:hover {
+    background: var(--gradient-colors);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -81,4 +84,4 @@
     animation: gradient-flow 5s linear infinite; /* Apply the gradient animation */
     background-size: 200% 200%; /* Ensure the gradient covers the entire text */
     border-bottom: none; /* Remove the underline on hover */
-  }
+}

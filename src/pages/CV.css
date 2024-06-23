@@ -1,10 +1,12 @@
+@import '../utilities.css';
+
 .cv-container {
   display: flex;
   justify-content: center;
   padding: 20px;
   font-family: 'Helvetica Neue', sans-serif;
-  color: #fff; /* White for text */
-  background-color: #333; /* Dark background */
+  color: var(--text-color); /* White for text */
+  background-color: var(--background-color); /* Dark background */
 }
 
 .main-content {
@@ -18,7 +20,7 @@
 .title {
   font-size: 8rem; /* Huge font size for CV text */
   font-weight: bold;
-  background: linear-gradient(90deg, rgba(150, 255, 255, 0.7), rgba(173, 216, 230, 0.7), #fff, rgba(255, 150, 255, 0.7), rgba(173, 216, 230, 0.7), rgba(150, 255, 255, 0.7)); /* Added light blue to the gradient */
+  background: var(--gradient-colors); /* Added light blue to the gradient */
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -28,7 +30,7 @@
 
 .description {
   font-size: 1rem;
-  color: #fff; /* White for paragraph text */
+  color: var(--text-color); /* White for paragraph text */
   margin-top: 10px;
   font-weight: bold;
 }
@@ -38,9 +40,10 @@
   line-height: 1.5;
   font-size: 3rem;
 }
+
 .list-item {
   font-size: 1rem;
-  color: #fff; /* White for list item text */
+  color: var(--text-color); /* White for list item text */
   margin-top: 5px;
   font-weight: normal;
 }
