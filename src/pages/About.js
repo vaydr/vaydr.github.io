@@ -15,7 +15,7 @@ const sections = [
       { label: 'Birthplace:', value: <> <FlavorText text="JFK University Medical Center" link="https://www.hackensackmeridianhealth.org/en/locations/jfk-university-medical-center?city=none" /> in <FlavorText text="Edison, NJ" link="https://www.edisonnj.org/" /> </> },
       { label: 'Birthdate:', value: '5:19 PM EDT on October 22, 2002' },
       { label: 'Hometown:', value: <> <FlavorText text="Starkville, MS" link="https://www.cityofstarkville.org/" /> </> },
-      { label: 'Family:', value: <> <FlavorText text="Mahalingam Ramkumar" link="https://web.cse.msstate.edu/~ramkumar/" /> (father, b. 1966), <FlavorText text="Bindu Nanduri" link="https://www.vetmed.msstate.edu/directory/bbn5" /> (mother, b. 1969), Professors at <FlavorText text="MSU" link="https://www.msstate.edu/" /> </> },
+      { label: 'Family:', value: <> <FlavorText text="Mahalingam Ramkumar" link="none" type={1} /> (father, b. 1966), <FlavorText text="Bindu Nanduri" link="none" type={1} /> (mother, b. 1969), Professors at <FlavorText text="MSU" link="https://www.msstate.edu/" /> </> },
     ],
   },
   {

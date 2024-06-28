@@ -22,10 +22,6 @@ const Contact = () => {
             <FlavorText text="+1 (662) 518-1351" link="none" type={1} /> (cell)
           </div>
           <div className="contact-section">
-            <div className="label">Address:</div>
-            <FlavorText text="42 George Street, Medford, MA 02155" link="none" type={1} />
-          </div>
-          <div className="contact-section">
             <div className="label">Instagram (don't have installed consistently, rarely use):</div>
             <FlavorText text="@vaydthewise" link="https://www.instagram.com/vaydthewise" />
           </div>
