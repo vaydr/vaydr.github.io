@@ -63,8 +63,8 @@ const Home = () => {
     <div className="home-container" style={{ display: 'flex', zIndex: -1 }}>
       <div className="left-container" style={{ flex: 1 }}>
         <h1 className="vaporwave-title">🛠️🚧 currently under construction 🚧🛠️</h1>
-        <p>yes, you're in the right place!</p>
-        <p>if you click the button below, something cool will happen...</p>
+        <p>yes, you're in the right place! vayd's full-time job is preventing him from updating this website, but he's working on it!</p>
+        <p>if you click "Feeling Lucky?", something cool will happen</p>
         <button onClick={handleButtonClick} className="vaporwave-button">Feeling Lucky?</button>
         <p className="fade-in-text">
           {showText && explanationText.split(' ').slice(0, textIndex).join(' ')}

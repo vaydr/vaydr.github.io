@@ -77,7 +77,7 @@ const About = () => {
           There is a subtle, but crucial difference between <FlavorText text="knowing about" link="none" type={1} /> someone and <FlavorText text="knowing" link="none" type={1} /> someone. If you just want to <FlavorText text="know about" link="none" type={1} /> me, feel free to refer to the fact card! If, however, you're interested in getting to <FlavorText text="know" link="none" type={1} /> me, you can refer to the blog posts below! If you get through them and still want to stick around, thank you! I live for the smiles of people such as yourself, and the <FlavorText text="Contact" link="https://vaydr.github.io/#/contact" type={0} /> page was made just for you!
         </div>
         <BlogContainer>
-          <BlogDescription title="On Thinking" description="some shower thoughts- particularly on how to apply graph algorithms to thinking (one might say i was thinking about thinking)" />
+          <BlogDescription title="under construction" description="TODO: integrate RSS feed. Wow, isn't the glowy text animation so pretty?" />
         </BlogContainer>
       </div>
       <div className="fact-card-container">
